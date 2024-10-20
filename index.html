@@ -16,5 +16,19 @@
       </select>
     </div>
   </body>
-  <script></script>
+  <script>
+    function selectCountry(event) {
+      if (event.target.value == "paris") {
+        alert(moment);
+      }
+      if (event.target.value == "tokyo") {
+        alert(moment);
+      }
+      if (event.target.value == "sydney") {
+        alert(moment);
+      }
+    }
+    let countrySelection = document.querySelector("#countries");
+    countrySelection.addEventListener("change", selectCountry);
+  </script>
 </html>
