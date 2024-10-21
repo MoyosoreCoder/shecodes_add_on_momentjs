@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
     <title>select city</title>
   </head>
   <body>
@@ -10,22 +12,23 @@
       <label for="">Which country would you like to travel?</label>
       <select id="countries">
         <option value="">Select a country</option>
-        <option value="paris">Paris</option>
-        <option value="tokyo">Tokyo</option>
-        <option value="sydney">Sydney</option>
+        <option value="paris">Paris 🇫🇷</option>
+        <option value="tokyo">Tokyo 🇯🇵</option>
+        <option value="sydney">Sydney Au</option>
       </select>
     </div>
   </body>
   <script>
     function selectCountry(event) {
-      if (event.target.value == "paris") {
-        alert(moment);
-      }
-      if (event.target.value == "tokyo") {
-        alert(moment);
-      }
-      if (event.target.value == "sydney") {
-        alert(moment);
+      const selectedCity = event.target.value;
+
+      const currentTime = moment()
+        .tz(selectedCity)
+        .format("dddd, MMMM D, YYYY h:m A");
+
+      if (selectedCity) {
+        const cityName = event.target.options[event.target.selectedIndex].text;
+        alert(`It is ${currentTime} in ${cityName}/(${selectedCity})`);
       }
     }
     let countrySelection = document.querySelector("#countries");
