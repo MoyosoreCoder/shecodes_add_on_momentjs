@@ -2,36 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
-    <title>select city</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.js"></script>
+    <title>Time zones are fun!</title>
   </head>
   <body>
-    <div>
-      <label for="">Which country would you like to travel?</label>
-      <select id="countries">
-        <option value="">Select a country</option>
-        <option value="paris">Paris 🇫🇷</option>
-        <option value="tokyo">Tokyo 🇯🇵</option>
-        <option value="sydney">Sydney Au</option>
-      </select>
-    </div>
-  </body>
-  <script>
-    function selectCountry(event) {
-      const selectedCity = event.target.value;
+    <label for="">Which country do you want to travel to?</label
+    ><select id="city">
+    <option value="Europe/Paris">Paris 🇫🇷</option>
+      <option value="Asia/Tokyo">Tokyo 🇯🇵</option>
+      <option value="Australia/Sydney">Sydney 🇦🇺</option>
+    </select>
 
-      const currentTime = moment()
-        .tz(selectedCity)
-        .format("dddd, MMMM D, YYYY h:m A");
+    <script>
+      function showDate(event) {
+        if (event.target.value.length > 0) {
+          let currentTime = moment()
+            .tz(event.target.value)
+            .format("dddd, MMMM D, YYYY h:mm A");
 
-      if (selectedCity) {
-        const cityName = event.target.options[event.target.selectedIndex].text;
-        alert(`It is ${currentTime} in ${cityName}/(${selectedCity})`);
+          alert(`It is ${currentTime} in ${event.target.value}`);
+        }
       }
-    }
-    let countrySelection = document.querySelector("#countries");
-    countrySelection.addEventListener("change", selectCountry);
-  </script>
+
+      let selectElement = document.querySelector("#city");
+      selectElement.addEventListener("change", showDate);
+    </script>
+  </body>
 </html>
